@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Search Game</title>
+    <link rel="stylesheet" href="styleword.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="game-title">Word Search Game</h1>
+        <div class="game-layout">
+            <div class="game-area">
+                <div class="left-panel">
+                    <div class="words-section">
+                        <div class="words-header">
+                            <div class="score">Found: <span id="score">0</span></div>
+                        </div>
+                        <ul id="word-list"></ul>
+                    </div>
+                    
+                    <div class="game-options">
+                        <button onclick="resetGame()" class="reset-btn">New Game</button>
+                        <div class="option-row">
+                            <div class="option-group half">
+                                <label>Number of Words:</label>
+                                <select id="wordCount" onchange="updateWordCount(this.value)">
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                </select>
+                            </div>
+                            <div class="option-group half">
+                                <label>Starting Letter:</label>
+                                <select id="letterSelect">
+                                    <option value="a">A</option>
+                                    <option value="b">B</option>
+                                    <option value="c">C</option>
+                                    <option value="d">D</option>
+                                    <option value="e">E</option>
+                                    <option value="f">F</option>
+                                    <option value="g">G</option>
+                                    <option value="h">H</option>
+                                    <option value="i">I</option>
+                                    <option value="j">J</option>
+                                    <option value="k">K</option>
+                                    <option value="l">L</option>
+                                    <option value="m">M</option>
+                                    <option value="n">N</option>
+                                    <option value="o">O</option>
+                                    <option value="p">P</option>
+                                    <option value="q">Q</option>
+                                    <option value="r">R</option>
+                                    <option value="s">S</option>
+                                    <option value="t">T</option>
+                                    <option value="u">U</option>
+                                    <option value="v">V</option>
+                                    <option value="w">W</option>
+                                    <option value="x">X</option>
+                                    <option value="y">Y</option>
+                                    <option value="z">Z</option>
+                                </select>
+                            </div>
+                            <div class="option-group half">
+                                <label>Difficulty:</label>
+                                <select id="difficultySelect" onchange="updateDifficulty(this.value)">
+                                    <option value="easy">Easy</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="hard">Hard</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="option-group timer-group">
+                            <label>Timer:</label>
+                            <div class="timer-container">
+                                <label class="switch">
+                                    <input type="checkbox" id="timerToggle" onchange="toggleTimer()">
+                                    <span class="slider round"></span>
+                                </label>
+                                <div id="timer" class="timer">Time: 00:00</div>
+                            </div>
+                        </div>
+                        <div class="option-group highlight-group">
+                            <label>Highlight Found Words:</label>
+                            <div class="highlight-controls">
+                                <label class="switch">
+                                    <input type="checkbox" id="highlightToggle" onchange="toggleHighlight()" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                                <input type="color" id="highlightColor" value="#4cd964" onchange="updateHighlightColor(this.value)">
+                            </div>
+                        </div>
+                        <div class="option-group theme-group">
+                            <label>Dark Mode:</label>
+                            <div class="theme-controls">
+                                <label class="switch">
+                                    <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="option-group">
+                            <label>Hints Remaining: <span id="hintCount">3</span></label>
+                            <button id="hintButton" onclick="useHint()" class="hint-btn">Use Hint</button>
+                        </div>
+                        <div class="option-group stats-group">
+                            <label>Statistics:</label>
+                            <div class="stats-container">
+                                <div class="stat-item">
+                                    <span class="stat-label">Games Played:</span>
+                                    <span id="gamesPlayed">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Win Streak:</span>
+                                    <span id="winStreak">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Best Time:</span>
+                                    <span id="bestTime">-:--</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="right-panel">
+                    <div class="game-container">
+                        <div id="game-board"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="congratulations-modal" class="modal">
+            <div class="modal-content">
+                <h2>Congratulations! 🎉</h2>
+                <p>You found all the words!</p>
+                <button onclick="resetGame()" class="reset-btn">Play Again</button>
+            </div>
+        </div>
+    </div>
+    <script src="wordlist.js"></script>
+    <script src="appword.js"></script>
+</body>
+</html>
